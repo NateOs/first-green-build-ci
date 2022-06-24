@@ -16,6 +16,9 @@ jobs:
       - image: circleci/node:13.8.0
     steps:
       - run: echo world
+  print_env_var:
+      - steps:
+          - run: echo $test_env_var
 workflows:
   # Name the workflow "welcome"
   welcome:
@@ -26,3 +29,4 @@ workflows:
       - print_world:
           requires:
             - print_hello
+      - print_env_var
