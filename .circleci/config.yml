@@ -10,9 +10,9 @@ jobs:
     docker:
     - image: circleci/node:13.8.0
     steps:
-      - run: echo "text to output here" > output.txt
+      - run: echo "text to output here" > ~/output.txt
       - persist_to_workspace: 
-          root: workspace
+          root: ~/
           paths:
             - output.txt
   print_output_file:
@@ -20,8 +20,8 @@ jobs:
     - image: circleci/node:13.8.0
     steps:
       - attach_workspace:
-          at: workspace
-      - run: cat output.txt
+          at: ~/
+      - run: cat ~/output.txt
 workflows:
   # Name the workflow "welcome"
   welcome:
