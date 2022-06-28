@@ -31,6 +31,7 @@ jobs:
       - attach_workspace:
           at: ~/
       - run: cat output.txt
+      - print_pipeline_id
     
 workflows:
   # Name the workflow "welcome"
@@ -40,4 +41,3 @@ workflows:
       - welcome/run
       - save_hello_world_output
       - print_output_file
-      - print_pipeline_id
