@@ -21,7 +21,11 @@ jobs:
     steps:
       - attach_workspace:
           at: ~/
-      - run: cat ~/output.txt
+      - run: cat ~/output
+      - run:
+          name: Log failed job name
+          command: echo 'This step failed'
+          when: on_fail
 workflows:
   # Name the workflow "welcome"
   welcome:
