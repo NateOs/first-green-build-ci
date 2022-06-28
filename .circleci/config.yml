@@ -11,7 +11,6 @@ defaults: &defaults
 
 commands:
   print_pipeline_id:
-    <<: *defaults
     steps:
       - run: echo ${CIRCLE_WORKFLOW_ID}
         
@@ -32,6 +31,7 @@ jobs:
           at: ~/
       - run: cat output.txt
       - print_pipeline_id
+
     
 workflows:
   # Name the workflow "welcome"
