@@ -21,8 +21,7 @@ jobs:
     steps:
       - attach_workspace:
           at: ~/
-      - run: cat output.txt
-      - run:
+      - run: cat output
           name: Log failed job name
           command: echo 'print_output_file failed'
           when: on_fail
