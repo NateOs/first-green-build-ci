@@ -6,9 +6,11 @@ orbs:
   welcome: circleci/welcome-orb@0.4.1
 # Orchestrate or schedule a set of jobs
 jobs:
-  save_hello_world_output:
-    docker:
+  defaults: &defaults
+     docker:
     - image: circleci/node:13.8.0
+  save_hello_world_output:
+    <<: *defaults
     steps:
       - run: echo "text to output here" > ~/output.txt
       - persist_to_workspace: 
@@ -16,12 +18,16 @@ jobs:
           paths:
             - output.txt
   print_output_file:
-    docker:
-    - image: circleci/node:13.8.0
+    <<: *defaults
     steps:
       - attach_workspace:
           at: ~/
-      - run: cat ~/output.txt
+      - run: cat output.txt
+  print_pipeline_id:
+    <<: *defaults
+    steps:
+      - echo $CIRCLE_WORKFLOW_ID
+    
 workflows:
   # Name the workflow "welcome"
   welcome:
@@ -29,4 +35,5 @@ workflows:
     jobs:
       - welcome/run
       - save_hello_world_output
+      - print_output_file
       - print_output_file
