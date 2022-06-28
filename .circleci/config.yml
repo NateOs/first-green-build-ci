@@ -21,10 +21,10 @@ jobs:
     steps:
       - attach_workspace:
           at: ~/
-      - run: cat ~/output
+      - run: cat output.txt
       - run:
           name: Log failed job name
-          command: echo 'This step failed'
+          command: echo 'print_output_file failed'
           when: on_fail
       - print_pipeline_id
 
